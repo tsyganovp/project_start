@@ -33,6 +33,8 @@ $ gulp svg - оптимизация SVG
 $ gulp clean - удаление папки prebuild
 $ gulp symbols - сборка SVG спрайта
 $ gulp server - запуск сервера и живой перезагрузки
+$ gulp prebuild - запуск всех тасков по очереди
+$ gulp build -  перенос файлов из папки prebuild в build (релиз)
 ```
 
 Лицензия
