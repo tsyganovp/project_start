@@ -15,6 +15,7 @@ var svgstore = require('gulp-svgstore');
 var rename = require('gulp-rename');
 var inject = require('gulp-inject');
 var server = require('browser-sync').create();
+var run = require('gulp-sequence');
 
 
 //Сборка из PUG в HTML
@@ -94,8 +95,13 @@ gulp.task('server', ['style'], function() {
 gulp.watch('source/scss/**/*.{scss,sass}', ['style']).on('change',server.reload);
   gulp.watch('source/pug/**/*.pug',['html']).on('change', server.reload);
 });
-//Копирование файлов
-
-
-
+//Сборка
+gulp.task('prebuild', function(fn) {
+  run ('clean','html','style','images','svg','symbols',fn);
+});
+//Сборка в продакшн
+gulp.task('build', function buildHTML() {
+  return gulp.src('prebuild/**')
+  .pipe(gulp.dest('build'));
+});
 
